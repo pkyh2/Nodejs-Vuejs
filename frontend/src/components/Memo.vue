@@ -19,11 +19,13 @@ export default {
 			data: [],
 		});
 		const add = () => {
-			state.data.push('추가된 메모 내용');
+			axios.post('/api/memos').then(res => {
+				state.data = res.data;
+			});
 		};
 
-		axios.get('http://localhost:3000/memos').then(res => {
-			console.log(res);
+		axios.get('/api/memos').then(res => {
+			state.data = res.data;
 		});
 
 		return { state, add };
@@ -43,12 +45,12 @@ export default {
 
 	ul {
 		list-style: none;
-		padding: 15px 0;
+		padding: 15px;
 		margin: 0;
 
 		li {
 			padding: 15px;
-			margin: 15px;
+			margin: 15px 0;
 			border: 1px solid #eee;
 		}
 	}
