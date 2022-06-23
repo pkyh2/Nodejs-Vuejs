@@ -18,8 +18,17 @@ export default {
 		const state = reactive({
 			data: [],
 		});
+
 		const add = () => {
-			axios.post('/api/memos').then(res => {
+			const content = prompt('내용을 입력해주세요.');
+			axios.post('/api/memos', { content: content }).then(res => {
+				state.data = res.data;
+			});
+		};
+
+		const edit = idx => {
+			const content = prompt('내용을 수정해주세요', state.data[idx]);
+			axios.put('/api/memos/' + idx, { content }).then(res => {
 				state.data = res.data;
 			});
 		};
@@ -28,7 +37,7 @@ export default {
 			state.data = res.data;
 		});
 
-		return { state, add };
+		return { state, add, edit };
 	},
 };
 </script>
