@@ -4,7 +4,9 @@
 			<button class="btn btn-primary" @click="add()">+ 추가</button>
 		</div>
 		<ul>
-			<li v-for="(d, idx) in state.data" :key="idx">{{ d }}</li>
+			<li v-for="(d, idx) in state.data" :key="idx" @click="edit(idx)">
+				{{ d }}
+			</li>
 		</ul>
 	</div>
 </template>

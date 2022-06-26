@@ -17,8 +17,8 @@ app.post('/api/memos', (req, res) => {
   res.send(memos)
 })
 
-app.put('/api/memos', (req, res) => {
-  memos[req.body.idx] = req.body.content
+app.put('/api/memos/:idx', (req, res) => {
+  memos[req.params.idx] = req.body.content
   res.send(memos)
 })
 
